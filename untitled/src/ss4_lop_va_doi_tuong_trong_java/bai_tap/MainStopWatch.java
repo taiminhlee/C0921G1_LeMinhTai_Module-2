@@ -1,6 +1,6 @@
 package ss4_lop_va_doi_tuong_trong_java.bai_tap;
 
-public class MainFan {
+public class MainStopWatch {
     public static void main(String[] args) {
         StopWatch time=new StopWatch();
 
