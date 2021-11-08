@@ -4,6 +4,6 @@ public class Circle extends ss6_ke_thua.thuc_hanh.he_cac_doi_tuong_hinh_hoc.Circ
 
     @Override
     public void resize(double percent) {
-        this.setRadius(this.getRadius() + (this.getRadius() + percent / 100));
+        this.setRadius(this.getRadius() + (this.getRadius() * percent / 100));
     }
 }

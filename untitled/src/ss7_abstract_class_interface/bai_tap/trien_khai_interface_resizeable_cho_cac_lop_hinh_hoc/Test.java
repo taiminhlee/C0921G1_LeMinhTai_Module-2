@@ -15,16 +15,19 @@ public class Test {
                 System.out.println("Before resize: "+sh);
                 sh.resize(Math.random()*99+1);
                 System.out.println("After resize: "+sh);
+                System.out.println("------------------------");
             }else if(shape instanceof Rectangle){
                 Rectangle sh =(Rectangle) shape;
                 System.out.println("Before resize: "+sh);
                 sh.resize(Math.random()*99+1);
                 System.out.println("After resize: "+sh);
+                System.out.println("------------------------");
             }else if (shape instanceof Square){
                 Square sh=(Square)shape;
                 System.out.println("Before resize: "+sh);
                 sh.resize(Math.random()*99+1);
                 System.out.println("After resize: "+sh);
+                System.out.println("---------------------------------");
             }
         }
     }
