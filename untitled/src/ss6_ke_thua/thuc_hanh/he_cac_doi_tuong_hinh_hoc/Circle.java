@@ -9,9 +9,10 @@ public class Circle extends Shape {
     public Circle(double radius) {
         this.radius = radius;
     }
-    public Circle(double radius,String color,boolean filled){
+
+    public Circle(double radius, String color, boolean filled) {
         super(color, filled);
-        this.radius=radius;
+        this.radius = radius;
     }
 
     public double getRadius() {
@@ -41,11 +42,14 @@ public class Circle extends Shape {
     public void setFilled(boolean filled) {
         super.setFilled(filled);
     }
-    public  double getArea(){
-        return this.radius*2*Math.PI;
+
+    @Override
+    public double getArea() {
+        return (this.radius * 2 * Math.PI);
     }
-    public double getPerimeter(){
-        return Math.PI*Math.pow(this.radius,2);
+
+    public double getPerimeter() {
+        return Math.PI * Math.pow(this.radius, 2);
     }
 
     @Override
@@ -54,7 +58,7 @@ public class Circle extends Shape {
                 + getRadius()
                 + ", area="
                 + getArea()
-                +", perimeter="
+                + ", perimeter="
                 + getPerimeter()
                 + ", which is a subclass of "
                 + super.toString();

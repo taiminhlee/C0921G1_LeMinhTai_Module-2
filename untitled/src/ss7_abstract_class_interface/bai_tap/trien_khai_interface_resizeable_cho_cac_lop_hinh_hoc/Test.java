@@ -6,27 +6,25 @@ import ss6_ke_thua.thuc_hanh.he_cac_doi_tuong_hinh_hoc.Shape;
 public class Test {
     public static void main(String[] args) {
         Shape[] shapes=new Shape[3];
-        shapes[0]=new Circle();
-        shapes[1]=new Rectangle();
-        shapes[2]=new Square();
+        shapes[0]=new Circle(3);
+        shapes[1]=new Rectangle(2,5);
+        shapes[2]=new Square(5);
         for (Shape shape:shapes) {
             if (shape instanceof Circle) {
-                Circle sh = (Circle) shape;
-                System.out.println("Before resize: "+sh);
-                sh.resize(Math.random()*99+1);
-                System.out.println("After resize: "+sh);
+                System.out.println("Before resize Circle: "+shape.getArea());
+                ((Circle)shape).resize(Math.random()*99+1);
+                System.out.println("After resize Circle: "+shape.getArea());
                 System.out.println("------------------------");
             }else if(shape instanceof Rectangle){
-                Rectangle sh =(Rectangle) shape;
-                System.out.println("Before resize: "+sh);
-                sh.resize(Math.random()*99+1);
-                System.out.println("After resize: "+sh);
+
+                System.out.println("Before resize Rectangle: "+shape.getArea());
+                ((Rectangle)shape).resize(Math.random()*99+1);
+                System.out.println("After resize Rectangle: "+shape.getArea());
                 System.out.println("------------------------");
             }else if (shape instanceof Square){
-                Square sh=(Square)shape;
-                System.out.println("Before resize: "+sh);
-                sh.resize(Math.random()*99+1);
-                System.out.println("After resize: "+sh);
+                System.out.println("Before resize Square: "+shape.getArea());
+                ((Square)shape).resize(Math.random()*99+1);
+                System.out.println("After resize Square: "+shape.getArea());
                 System.out.println("---------------------------------");
             }
         }

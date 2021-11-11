@@ -1,6 +1,8 @@
 package ss6_ke_thua.thuc_hanh.he_cac_doi_tuong_hinh_hoc;
 
-public class Shape {
+import ss7_abstract_class_interface.bai_tap.trien_khai_interface_resizeable_cho_cac_lop_hinh_hoc.Resizeable;
+
+public class Shape  {
    private String  color = "green";
    private boolean filled = true;
 
@@ -35,6 +37,10 @@ public class Shape {
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
     }
+
+  public double getArea(){
+       return getArea();
+  }
 }
 
 
