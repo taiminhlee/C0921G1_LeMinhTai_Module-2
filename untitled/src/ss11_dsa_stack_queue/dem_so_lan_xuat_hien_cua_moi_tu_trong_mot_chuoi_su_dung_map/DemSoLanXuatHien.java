@@ -1,5 +1,6 @@
 package ss11_dsa_stack_queue.dem_so_lan_xuat_hien_cua_moi_tu_trong_mot_chuoi_su_dung_map;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -11,7 +12,7 @@ public class DemSoLanXuatHien {
         String[] arr = str.toLowerCase().split("");
         String key;
         Integer value;
-        TreeMap<String, Integer> map = new TreeMap<>();
+        Map<String, Integer> map = new TreeMap<>();
         for (String s : arr) {
             key = s;
             if (map.containsKey(key)) {
