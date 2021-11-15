@@ -3,7 +3,8 @@ package case_study.controllers;
 import java.util.Scanner;
 
 public class FuramaController {
-    public void displayMainMenu() {
+    public static void main(String[] args) {
+//        public void displayMainMenu() {
             Scanner input = new Scanner(System.in);
             int choice = 0;
             while (choice != 6) {
@@ -78,5 +79,5 @@ public class FuramaController {
                 }
             }
         }
-
     }
+
