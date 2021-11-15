@@ -1,6 +1,6 @@
-package ss7_abstract_class_interface.bai_tap.trien_khai_interface_resizeable_cho_cac_lop_hinh_hoc;
+package ss7_abstract_class_interface.bai_tap.trien_khai_interface_colorable_cho_cac_lop_hinh_hoc;
 
-public class Rectangle extends Shape implements Resizeable{
+public class Rectangle extends Shape{
     private double width = 1.0;
     private double length = 1.0;
 
@@ -17,7 +17,6 @@ public class Rectangle extends Shape implements Resizeable{
         this.width = width;
         this.length = length;
     }
-
 
     public double getWidth() {
         return width;
@@ -51,11 +50,5 @@ public class Rectangle extends Shape implements Resizeable{
                 + getLength()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-
-    @Override
-    public void resize(double percent) {
-        this.setWidth(this.getWidth()+(this.getWidth()*percent/100));
-        this.setLength(this.getLength()+(this.getLength()*percent/100));
     }
 }

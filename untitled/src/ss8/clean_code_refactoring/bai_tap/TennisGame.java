@@ -5,8 +5,9 @@ import org.jetbrains.annotations.NotNull;
 public class TennisGame {
     public static final char NEGATIVE = '-';
 
-    public static @NotNull
-    String getScore(String player1Name, String player2Name, int nameScore1, int nameScore2) {
+
+
+    static String getScore(String player1Name, String player2Name, int nameScore1, int nameScore2) {
         StringBuilder score = new StringBuilder();
         int tempScore;
         if (nameScore1 == nameScore2) {
