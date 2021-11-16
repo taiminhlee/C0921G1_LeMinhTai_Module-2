@@ -5,10 +5,10 @@ public class Test {
     public static void main(String[] args) {
         ProductManager product = new ProductManager();
         product.toAdd();
-//        product.display();
-//        product.remove();
-//        product.displayByName();
-//        product.editById();
+        product.display();
+        product.remove();
+        product.displayByName();
+        product.editById();
         product.editSortUp();
         product.display();
         product.editSortDown();
