@@ -20,8 +20,8 @@ public class DemSoLanXuatHien {
                 map.put(s,1);
             }
         }
-        for (String key1 : map.keySet()) {
-            System.out.println("Từ '" + key1 + "' xuất hiện " + map.get(key1) + " lần");
+        for (String key : map.keySet()) {
+            System.out.println("Từ '" + key + "' xuất hiện " + map.get(key) + " lần");
         }
     }
 }
