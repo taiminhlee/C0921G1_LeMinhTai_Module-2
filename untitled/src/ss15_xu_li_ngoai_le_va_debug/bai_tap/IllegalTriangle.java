@@ -24,6 +24,5 @@ public class IllegalTriangle {
                 && a + b > 0 && a + c > 0 && b + c > a) {
             System.out.println("đây là ba cạnh tam giác");
         }else throw new IllegalTriangleException("Đây không phải là 3 cạnh tam giác");
-
     }
 }

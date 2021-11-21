@@ -3,7 +3,6 @@ package ss12_java_collection_framework.bai_tap.luyen_tap_su_dung_arraylist_licnk
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
