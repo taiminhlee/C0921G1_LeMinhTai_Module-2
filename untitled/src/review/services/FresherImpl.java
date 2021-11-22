@@ -1,5 +1,6 @@
 package review.services;
 
+import review.controllers.FresherFile;
 import review.models.Experience;
 import review.models.Fresher;
 
@@ -10,9 +11,11 @@ import java.util.Scanner;
 public class FresherImpl implements Service {
     static List<Fresher> freshers = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+    static FresherFile fresherFile=new FresherFile();
 
     static {
         freshers.add( new Fresher(2, "Barbosa", "De Souza", 1999, "Sao paulo", 137537, "barbosa@gmail.com", 1, 3, "Good", "Kaiqkbsd")) ;
+        fresherFile.writeFile(new Fresher(2, "Barbosa", "De Souza", 1999, "Sao paulo", 137537, "barbosa@gmail.com", 1, 3, "Good", "Kaiqkbsd"));
     }
 
     @Override
@@ -39,7 +42,9 @@ public class FresherImpl implements Service {
         String GraduationRank = sc.nextLine();
         System.out.println("Enter education");
         String education = sc.nextLine();
-        freshers.add(new Fresher(id, firstName, lastName, birthDate, address, phone, email, candidateType, graduationDate, GraduationRank, education));
+        Fresher fresher=new Fresher(id, firstName, lastName, birthDate, address, phone, email, candidateType, graduationDate, GraduationRank, education);
+        freshers.add(fresher);
+        fresherFile.writeFile(fresher);
     }
 
     @Override

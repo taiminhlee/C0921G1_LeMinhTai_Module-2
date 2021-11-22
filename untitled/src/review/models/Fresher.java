@@ -15,6 +15,22 @@ public class Fresher extends Candidates{
         this.education = education;
     }
 
+    public int getGraduationDate() {
+        return graduationDate;
+    }
+
+    public void setGraduationDate(int graduationDate) {
+        this.graduationDate = graduationDate;
+    }
+
+    public String getGraduationRank() {
+        return GraduationRank;
+    }
+
+    public void setGraduationRank(String graduationRank) {
+        GraduationRank = graduationRank;
+    }
+
     public String getEducation() {
         return education;
     }

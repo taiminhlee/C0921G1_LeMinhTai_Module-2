@@ -14,7 +14,7 @@ public class FuramaController {
                 System.out.println("5.\tPromotion Management");
                 System.out.println("6.\tExit");
                 System.out.println("Choice: ");
-                choice = input.nextInt();
+                choice = Integer.parseInt(input.nextLine());
                 switch (choice) {
                     case 1:
                         while (choice != 4) {

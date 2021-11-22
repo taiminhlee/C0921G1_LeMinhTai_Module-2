@@ -7,8 +7,10 @@ import java.util.List;
 
 public class Main {
      public static void main(String[] args) {
+         WriteFile writeFile=new WriteFile();
+         writeFile.writeCSV(new Country(9,"'VI'","'Vietnam'"));
 
-        BufferedReader br = null;
+         BufferedReader br = null;
         try {
             String line;
             br = new BufferedReader(new FileReader("G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\ss16_IO_text_file\\bai_tap\\doc_file_csv\\countries.csv"));

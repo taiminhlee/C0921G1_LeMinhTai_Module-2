@@ -1,7 +1,7 @@
 package review.services;
 
-import review.models.Experience;
-import review.models.Fresher;
+import review.controllers.InternFile;
+
 import review.models.Intern;
 
 import java.util.ArrayList;
@@ -11,9 +11,11 @@ import java.util.Scanner;
 public class InternImpl implements Service {
     static List<Intern> interns = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+    static InternFile internFile=new InternFile();
 
     static {
         interns.add(new Intern(5, "Maria", "Madeleine", 2000, "Munich", 947204, "Maria@gmail.com", 2, "interpreter", "semester 3", "Oxford"));
+        internFile.writeFile(new Intern(5, "Maria", "Madeleine", 2000, "Munich", 947204, "Maria@gmail.com", 2, "interpreter", "semester 3", "Oxford"));
     }
 
     @Override
@@ -40,7 +42,9 @@ public class InternImpl implements Service {
         String semester = sc.nextLine();
         System.out.println("Enter universityName");
         String universityName = sc.nextLine();
-        interns.add(new Intern(id, firstName, lastName, birthDate, address, phone, email, candidateType, majors, semester, universityName));
+        Intern fresher=new Intern(id, firstName, lastName, birthDate, address, phone, email, candidateType, majors, semester, universityName);
+        interns.add(fresher);
+        internFile.writeFile(fresher);
     }
 
     @Override
