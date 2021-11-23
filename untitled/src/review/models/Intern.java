@@ -40,14 +40,14 @@ public class Intern extends Candidates{
     @Override
     public String toString() {
         return "{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                ", address='" + address + '\'' +
-                ", phone=" + phone +
-                ", email='" + email + '\'' +
-                ", candidateType=" + candidateType +
+                "id=" + this.getId() +
+                ", firstName='" +this.getFirstName()  + '\'' +
+                ", lastName='" + this.getLastName() + '\'' +
+                ", birthDate=" + this.getBirthDate() +
+                ", address='" + this.getAddress() + '\'' +
+                ", phone=" + this.getPhone() +
+                ", email='" + this.getEmail() + '\'' +
+                ", candidateType=" + this.getCandidateType() +
                 '}';
     }
 }

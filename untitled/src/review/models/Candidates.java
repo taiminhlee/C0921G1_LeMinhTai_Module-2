@@ -1,13 +1,13 @@
 package review.models;
 
 public abstract class Candidates {
-    int id;
-    String firstName,lastName;
-    int birthDate;
-    String address;
-    int phone;
-    String email;
-    int candidateType;
+    private int id;
+    private String firstName, lastName;
+    private int birthDate;
+    private String address;
+    private int phone;
+    private String email;
+    private int candidateType;
 
     public Candidates() {
     }
