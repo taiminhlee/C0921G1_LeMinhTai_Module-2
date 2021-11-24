@@ -18,7 +18,7 @@ public class ProductImpl implements Service {
     @Override
     public void add() {
         System.out.println("Please enter id");
-        String id = scanner.nextLine();
+        String id = (scanner.nextLine());
         System.out.println("Please enter name");
         String name = scanner.nextLine();
         System.out.println("Please enter manufacturer");
@@ -29,7 +29,6 @@ public class ProductImpl implements Service {
         String description = (scanner.nextLine());
         products.add(new Product(id, name, manufacturer, price, description));
         ReadWriteFile.writeFile(products);
-
     }
 
     @Override
@@ -43,8 +42,12 @@ public class ProductImpl implements Service {
     @Override
     public void delete() {
         System.out.println("Enter id");
-        String id = scanner.nextLine();
-        products.removeIf(product -> product.getId().equals(id));
+        String id=scanner.nextLine();
+        for (Product product: products) {
+            if (product.getId().equals(id)) {
+                products.remove(product);
+            }
+        }ReadWriteFile.writeFile(products);
     }
 
     @Override
