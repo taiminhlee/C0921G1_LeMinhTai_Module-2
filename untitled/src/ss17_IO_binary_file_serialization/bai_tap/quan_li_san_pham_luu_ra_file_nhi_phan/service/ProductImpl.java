@@ -1,15 +1,13 @@
 package ss17_IO_binary_file_serialization.bai_tap.quan_li_san_pham_luu_ra_file_nhi_phan.service;
 
-import review.models.Experience;
 import ss17_IO_binary_file_serialization.bai_tap.quan_li_san_pham_luu_ra_file_nhi_phan.models.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProductImpl implements Service {
     Scanner scanner = new Scanner(System.in);
-    List<Product> products = new ArrayList<>();
+    List<Product> products;
 
     {
         products = ReadWriteFile.readFile();
@@ -43,11 +41,8 @@ public class ProductImpl implements Service {
     public void delete() {
         System.out.println("Enter id");
         String id=scanner.nextLine();
-        for (Product product: products) {
-            if (product.getId().equals(id)) {
-                products.remove(product);
-            }
-        }ReadWriteFile.writeFile(products);
+        products.removeIf(product -> product.getId().equals(id));
+        ReadWriteFile.writeFile(products);
     }
 
     @Override
