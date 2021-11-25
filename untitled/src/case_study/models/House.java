@@ -1,8 +1,8 @@
 package case_study.models;
 
 public class House extends Facility{
-    int tieuChuanPhong,soTang;
-    double dienTichHoBoi;
+   private int tieuChuanPhong,soTang;
+   private double dienTichHoBoi;
 
     public House() {
     }
@@ -36,5 +36,14 @@ public class House extends Facility{
 
     public void setDienTichHoBoi(double dienTichHoBoi) {
         this.dienTichHoBoi = dienTichHoBoi;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "tieuChuanPhong=" + tieuChuanPhong +
+                ", soTang=" + soTang +
+                ", dienTichHoBoi=" + dienTichHoBoi +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package case_study.models;
 
 public class Room extends Facility{
-    int tieuChuanPhong,soTang;
+   private int tieuChuanPhong,soTang;
 
     public Room() {
     }
@@ -26,5 +26,13 @@ public class Room extends Facility{
 
     public void setSoTang(int soTang) {
         this.soTang = soTang;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "tieuChuanPhong=" + tieuChuanPhong +
+                ", soTang=" + soTang +
+                '}';
     }
 }

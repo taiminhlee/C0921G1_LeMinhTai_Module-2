@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeeServiceImpl implements EmployeeService{
-   private int maNhanVien;
-   private String hoTen,ngaySinh,gioiTinh;
-   private int cmnd,sdt;
-  private String email,trinhDo,viTri;
-   private int luong;
+public class EmployeeServiceImpl implements EmployeeService {
+    private int maNhanVien;
+    private String hoTen, ngaySinh, gioiTinh;
+    private String cmnd, sdt;
+    private String email, trinhDo, viTri;
+    private int luong;
 
     public EmployeeServiceImpl() {
     }
 
-    public EmployeeServiceImpl(int maNhanVien, String hoTen, String ngaySinh, String gioiTinh, int cmnd, int sdt, String email, String trinhDo, String viTri, int luong) {
+    public EmployeeServiceImpl(int maNhanVien, String hoTen, String ngaySinh, String gioiTinh, String cmnd, String sdt, String email, String trinhDo, String viTri, int luong) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
@@ -59,19 +59,19 @@ public class EmployeeServiceImpl implements EmployeeService{
         this.gioiTinh = gioiTinh;
     }
 
-    public long getCmnd() {
+    public String getCmnd() {
         return cmnd;
     }
 
-    public void setCmnd(int cmnd) {
+    public void setCmnd(String cmnd) {
         this.cmnd = cmnd;
     }
 
-    public float getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(int sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 
@@ -122,42 +122,56 @@ public class EmployeeServiceImpl implements EmployeeService{
                 ", luong=" + luong +
                 '}';
     }
-   static  List<EmployeeServiceImpl> employeeServiceList=new ArrayList<>();
-    Scanner sc=new Scanner(System.in);
+
+    static List<EmployeeServiceImpl> employeeServiceList = new ArrayList<>();
+    Scanner sc = new Scanner(System.in);
     EmployeeServiceImpl employeeService;
+
     static {
-        employeeServiceList.add(new EmployeeServiceImpl(1,"Nguyễn Văn A","4/7/1999","nam",836434273,294723828,"nguyenvana@gmail.com","Đại học","chuyên viên",20000));
+        employeeServiceList.add(new EmployeeServiceImpl(1, "Nguyễn Văn A", "4/7/1999", "nam", "836434273", "294723828", "nguyenvana@gmail.com", "Đại học", "chuyên viên", 20000));
     }
 
     @Override
     public void add() {
         System.out.println("Nhập mã nhân viên");
-        int id=sc.nextInt();
+        int id = Integer.parseInt(sc.nextLine());
         System.out.println("Nhập hộ và tên");
-        String name=sc.nextLine();
+        String name = sc.nextLine();
         System.out.println("Nhập ngày tháng năm sinh");
-        String birth=sc.nextLine();
+        String birth = sc.nextLine();
         System.out.println("Nhập giới tính");
-        String gender=sc.nextLine();
+        String gender = sc.nextLine();
         System.out.println("Nhập cmnd");
-        int cmnd=sc.nextInt();
+        String cmnd = (sc.nextLine());
         System.out.println("Nhập số điện thoại");
-        int sdt=sc.nextInt();
+        String sdt = (sc.nextLine());
         System.out.println("Nhập email");
-        String email=sc.nextLine();
+        String email = sc.nextLine();
         System.out.println("Nhập trình độ");
-        String level=sc.nextLine();
+        String level = sc.nextLine();
         System.out.println("Nhập vị trí");
-        String position=sc.nextLine();
+        String position = sc.nextLine();
         System.out.println("Nhập lương");
-        int salary=sc.nextInt();
-        employeeService=new EmployeeServiceImpl(id,name,birth,gender,cmnd,sdt,email,level,position,salary);
+        int salary = Integer.parseInt(sc.nextLine());
+        employeeService = new EmployeeServiceImpl(id, name, birth, gender, cmnd, sdt, email, level, position, salary);
         employeeServiceList.add(employeeService);
     }
 
     @Override
     public void edit() {
-
+        System.out.println("Nhập id nhân viên");
+        int id = Integer.parseInt(sc.nextLine());
+        System.out.println("Nhập tên nhân viên cần sửa");
+        String name = sc.nextLine();
+        boolean flag=true;
+        for (EmployeeServiceImpl employeeService : employeeServiceList) {
+            if (employeeService.getMaNhanVien() == id && employeeService.getHoTen().equals(name)) {
+               optionEdit(employeeService);
+               flag=false;
+            }
+        }if (flag){
+            System.out.println("Nhân viên không tồn tại");
+        }
     }
 
     @Override
@@ -168,5 +182,76 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void display() {
 
+    }
+    private void optionEdit(EmployeeServiceImpl e){
+        int choice;
+        while (true){
+            System.out.println("1.Sửa mã nhân viên");
+            System.out.println("2.Sửa tên nhân viên");
+            System.out.println("3.Sửa ngày tháng năm nhân viên");
+            System.out.println("4.Sửa giới nhân viên");
+            System.out.println("5.Sửa cmnd nhân viên");
+            System.out.println("6.Sửa sđt nhân viên");
+            System.out.println("7.Sửa email nhân viên");
+            System.out.println("8.Sửa trình độ nhân viên");
+            System.out.println("9.Sửa vị trí nhân viên");
+            System.out.println("10.Sửa lương nhân viên");
+            System.out.println("11.thoát");
+            choice=Integer.parseInt(sc.nextLine());
+            switch (choice) {
+                case 1:
+                    System.out.println("Nhập mã ");
+                    int id=sc.nextInt();
+                    e.setMaNhanVien(id);
+                    break;
+                case 2:
+                    System.out.println("Nhập họ tên");
+                    String name=sc.nextLine();
+                    e.setHoTen(name);
+                    break;
+                case 3:
+                    System.out.println("Nhập ngày tháng năm sinh");
+                    String birth=sc.nextLine();
+                    e.setNgaySinh(birth);
+                    break;
+                case 4:
+                    System.out.println("Nhập giới tính");
+                    String gender=sc.nextLine();
+                    e.setGioiTinh(gender);
+                    break;
+                case 5:
+                    System.out.println("Nhập cmnd");
+                    String cmnd=sc.nextLine();
+                    e.setCmnd(cmnd);
+                    break;
+                case 6:
+                    System.out.println("Nhập sđt");
+                    String sdt=sc.nextLine();
+                    e.setSdt(sdt);
+                    break;
+                case 7:
+                    System.out.println("Nhập email");
+                    String email=sc.nextLine();
+                    e.setEmail(email);
+                    break;
+                case 8:
+                    System.out.println("Nhập trình độ");
+                    String level=sc.nextLine();
+                    e.setTrinhDo(level);
+                    break;
+                case 9:
+                    System.out.println("Nhập vị trí");
+                    String position=sc.nextLine();
+                    e.setViTri(position);
+                    break;
+                case 10:
+                    System.out.println("Nhập lương");
+                    int salary=sc.nextInt();
+                    e.setLuong(salary);
+                    break;
+                case 11:
+                    System.exit(0);
+            }
+        }
     }
 }

@@ -1,9 +1,9 @@
 package case_study.models;
 
-public  abstract class Facility {
-    String tenDichVu,kieuThue;
-    double dienTichSuDung,chiPhiThue;
-    int soNguoiToiDa;
+public abstract class Facility {
+    private String tenDichVu, kieuThue;
+    private double dienTichSuDung, chiPhiThue;
+    private int soNguoiToiDa;
 
     public Facility() {
     }
@@ -54,5 +54,16 @@ public  abstract class Facility {
 
     public void setSoNguoiToiDa(int soNguoiToiDa) {
         this.soNguoiToiDa = soNguoiToiDa;
+    }
+
+    @Override
+    public String toString() {
+        return "Facility{" +
+                "tenDichVu='" + tenDichVu + '\'' +
+                ", kieuThue='" + kieuThue + '\'' +
+                ", dienTichSuDung=" + dienTichSuDung +
+                ", chiPhiThue=" + chiPhiThue +
+                ", soNguoiToiDa=" + soNguoiToiDa +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package case_study.models;
 
 public class Villa extends Facility{
-    String dichVuMienPhi;
+   private String dichVuMienPhi;
 
     public Villa() {
     }
