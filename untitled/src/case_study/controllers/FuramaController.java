@@ -1,8 +1,8 @@
 package case_study.controllers;
 
-import case_study.Services.CustomerServiceImpl;
-import case_study.Services.EmployeeServiceImpl;
-import case_study.Services.FacilityServiceImpl;
+import case_study.Services.customer.CustomerServiceImpl;
+import case_study.Services.employee.EmployeeServiceImpl;
+import case_study.Services.facility.FacilityServiceImpl;
 
 import java.util.Scanner;
 

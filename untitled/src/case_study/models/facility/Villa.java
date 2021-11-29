@@ -7,12 +7,12 @@ import java.util.Objects;
 public class Villa extends Facility {
     private String tieuChuanPhong;
     private double dienTichHoBoi;
-    private int soTang;
+    private String soTang;
 
     public Villa() {
     }
 
-    public Villa(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, double dienTichHoBoi, int soTang) {
+    public Villa(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, double dienTichHoBoi, String soTang) {
         super(tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
         this.tieuChuanPhong = tieuChuanPhong;
         this.dienTichHoBoi = dienTichHoBoi;
@@ -35,11 +35,11 @@ public class Villa extends Facility {
         this.dienTichHoBoi = dienTichHoBoi;
     }
 
-    public int getSoTang() {
+    public String getSoTang() {
         return soTang;
     }
 
-    public void setSoTang(int soTang) {
+    public void setSoTang(String soTang) {
         this.soTang = soTang;
     }
 
@@ -65,7 +65,7 @@ public class Villa extends Facility {
                 Objects.equals(getTenDichVu(), villa.getTenDichVu()) &&
                 Objects.equals(getKieuThue(), villa.getKieuThue()) &&
                 Double.compare(villa.dienTichHoBoi, dienTichHoBoi) == 0 &&
-                soTang == villa.soTang &&
+                soTang.equals(villa.soTang) &&
                 Objects.equals(tieuChuanPhong, villa.tieuChuanPhong);
     }
 

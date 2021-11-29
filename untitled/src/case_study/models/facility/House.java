@@ -5,12 +5,12 @@ import case_study.models.facility.Facility;
 import java.util.Objects;
 
 public class House extends Facility {
-   private int soTang;
+   private String soTang;
    private String tieuChuanPhong;
     public House() {
     }
 
-    public House(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, int soTang) {
+    public House(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, String soTang) {
         super(tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
         this.tieuChuanPhong = tieuChuanPhong;
         this.soTang = soTang;
@@ -24,11 +24,11 @@ public class House extends Facility {
         this.tieuChuanPhong = tieuChuanPhong;
     }
 
-    public int getSoTang() {
+    public String getSoTang() {
         return soTang;
     }
 
-    public void setSoTang(int soTang) {
+    public void setSoTang(String soTang) {
         this.soTang = soTang;
     }
 
@@ -54,7 +54,7 @@ public class House extends Facility {
                 Objects.equals(getTenDichVu(), house.getTenDichVu()) &&
                 Objects.equals(getKieuThue(), house.getKieuThue()) &&
                 Objects.equals(tieuChuanPhong,house.tieuChuanPhong) &&
-                soTang == house.soTang;
+                soTang.equals(house.soTang);
     }
 
     @Override
