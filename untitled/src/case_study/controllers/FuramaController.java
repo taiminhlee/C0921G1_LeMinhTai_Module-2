@@ -1,30 +1,35 @@
 package case_study.controllers;
 
+import case_study.Services.CustomerServiceImpl;
 import case_study.Services.EmployeeServiceImpl;
+import case_study.Services.FacilityServiceImpl;
 
 import java.util.Scanner;
 
 public class FuramaController {
         public void displayMainMenu() {
             EmployeeServiceImpl employeeService=new EmployeeServiceImpl();
+            CustomerServiceImpl customerService=new CustomerServiceImpl();
+            FacilityServiceImpl facilityService=new FacilityServiceImpl();
             Scanner input = new Scanner(System.in);
             int choice = 0;
             while (choice != 6) {
                 System.out.println("1.Employee Management");
                 System.out.println("2.Customer Management");
                 System.out.println("3.Facility Management");
-                System.out.println("4.\tBooking Management");
-                System.out.println("5.\tPromotion Management");
-                System.out.println("6.\tExit");
+                System.out.println("4.Booking Management");
+                System.out.println("5.Promotion Management");
+                System.out.println("6.Exit");
                 System.out.println("Choice: ");
-                choice = Integer.parseInt(input.nextLine());
+                choice =input.nextInt();
                 switch (choice) {
                     case 1:
-                        while (choice != 4) {
+                        while (choice != 5) {
                             System.out.println("1\tDisplay list employees");
                             System.out.println("2\tAdd new employee");
                             System.out.println("3\tEdit employee");
-                            System.out.println("4\tReturn main menu");
+                            System.out.println("4\tDelete employee");
+                            System.out.println("5\tReturn main menu");
                             System.out.println("Choice: ");
                             choice = input.nextInt();
                             switch (choice){
@@ -36,9 +41,11 @@ public class FuramaController {
                                     break;
                                 case 3:
                                     employeeService.edit();
+                                    break;
+                                case 4:
+                                    employeeService.remove();
+                                    break;
                             }
-
-//
                         }
                         break;
                     case 2:
@@ -49,7 +56,17 @@ public class FuramaController {
                             System.out.println("4.\tReturn main menu");
                             System.out.println("Choice: ");
                             choice = input.nextInt();
-//
+                            switch (choice){
+                                case 1:
+                                    customerService.display();
+                                    break;
+                                case 2:
+                                    customerService.add();
+                                    break;
+                                case 3:
+                                    customerService.edit();
+                                    break;
+                            }
                         }
                         break;
                     case 3:
@@ -60,7 +77,17 @@ public class FuramaController {
                             System.out.println("4\tReturn main menu");
                             System.out.println("Choice: ");
                             choice = input.nextInt();
-//
+                            switch (choice){
+                                case 1:
+                                    facilityService.display();
+                                    break;
+                                case 2:
+                                    facilityService.add();
+                                    break;
+                                case 3:
+                                    facilityService.displayMaintenance();
+                                    break;
+                            }
                         }
                         break;
                     case 4:
@@ -88,7 +115,6 @@ public class FuramaController {
                     case 6:
                         System.exit(6);
                         break;
-
                 }
             }
         }
