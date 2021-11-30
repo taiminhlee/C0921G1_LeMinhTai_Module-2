@@ -2,12 +2,12 @@ package case_study.models.person;
 
 public class Employee extends Person {
     private String trinhDo, viTri;
-    private int luong;
+    private String luong;
 
     public Employee() {
     }
 
-    public Employee(int maNhanVien, String hoTen, String ngaySinh, String gioiTinh, String cmnd, String sdt, String email, String trinhDo, String viTri, int luong) {
+    public Employee(String maNhanVien, String hoTen, String ngaySinh, String gioiTinh, String cmnd, String sdt, String email, String trinhDo, String viTri, String luong) {
         super(maNhanVien, hoTen, ngaySinh, gioiTinh, cmnd, sdt, email);
         this.trinhDo = trinhDo;
         this.viTri = viTri;
@@ -30,21 +30,16 @@ public class Employee extends Person {
         this.viTri = viTri;
     }
 
-    public int getLuong() {
+    public String getLuong() {
         return luong;
     }
 
-    public void setLuong(int luong) {
+    public void setLuong(String luong) {
         this.luong = luong;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
-                super.toString() +
-                "trinhDo='" + trinhDo + '\'' +
-                ", viTri='" + viTri + '\'' +
-                ", luong=" + luong +
-                '}';
+        return super.toString() + "," + this.trinhDo + "," + this.viTri + "," + this.luong;
     }
 }

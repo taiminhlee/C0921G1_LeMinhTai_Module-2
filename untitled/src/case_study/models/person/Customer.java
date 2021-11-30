@@ -6,8 +6,8 @@ public class Customer extends Person {
     public Customer() {
     }
 
-    public Customer(int ma, String hoTen, String ngaySinh, String gioiTinh, String cmnd, String sdt, String email, String loaiKhach, String diaChi) {
-        super(ma, hoTen, ngaySinh, gioiTinh, cmnd, sdt, email);
+    public Customer(String maKhachHang, String hoTen, String ngaySinh, String gioiTinh, String cmnd, String sdt, String email, String loaiKhach, String diaChi) {
+        super(maKhachHang, hoTen, ngaySinh, gioiTinh, cmnd, sdt, email);
         this.loaiKhach = loaiKhach;
         this.diaChi = diaChi;
     }
@@ -30,10 +30,6 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                super.toString() +
-                "loaiKhach='" + loaiKhach + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                '}';
+        return super.toString() + "," + this.loaiKhach + "," + this.diaChi;
     }
 }

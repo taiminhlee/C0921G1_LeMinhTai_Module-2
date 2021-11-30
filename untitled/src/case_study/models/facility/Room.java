@@ -10,8 +10,8 @@ public class Room extends Facility {
     public Room() {
     }
 
-    public Room(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String dichVuMienPhiDiKem) {
-        super(tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
+    public Room(String maDichVu, String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String dichVuMienPhiDiKem) {
+        super(maDichVu, tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
         this.dichVuMienPhiDiKem = dichVuMienPhiDiKem;
     }
 
@@ -25,10 +25,7 @@ public class Room extends Facility {
 
     @Override
     public String toString() {
-        return "Room{" +
-                super.toString() +
-                ", dichVuMienPhiDiKem=" + dichVuMienPhiDiKem +
-                '}';
+        return super.toString() + "," + this.dichVuMienPhiDiKem;
     }
 
     @Override
@@ -37,16 +34,12 @@ public class Room extends Facility {
         if (!(o instanceof Room)) return false;
         if (!super.equals(o)) return false;
         Room room = (Room) o;
-        return Double.compare(room.getDienTichSuDung(), getDienTichSuDung()) == 0 &&
-                Objects.equals(room.getChiPhiThue(), getChiPhiThue()) &&
-                getSoNguoiToiDa() == room.getSoNguoiToiDa() &&
-                Objects.equals(getTenDichVu(), room.getTenDichVu()) &&
-                Objects.equals(getKieuThue(), room.getKieuThue()) &&
+        return super.equals(o) &&
                 Objects.equals(dichVuMienPhiDiKem, room.dichVuMienPhiDiKem);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(),dichVuMienPhiDiKem);
+        return Objects.hash(super.hashCode(), dichVuMienPhiDiKem);
     }
 }

@@ -1,5 +1,6 @@
 package case_study.Services.employee;
 
+import case_study.Services.FileUtils;
 import case_study.models.person.Employee;
 
 import java.util.ArrayList;
@@ -12,13 +13,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     Employee employee;
 
     static {
-        employeeServiceList.add(new Employee(1, "Nguyễn Văn A", "4/7/1999", "nam", "836434273", "294723828", "nguyenvana@gmail.com", "Đại học", "chuyên viên", 20000));
+        Employee employee = new Employee("1", "Nguyễn Văn A", "4/7/1999", "nam", "836434273", "294723828", "nguyenvana@gmail.com", "Đại học", "chuyên viên", "20000");
+        employeeServiceList.add(employee);
+         writeFile(employee);
     }
 
     @Override
     public void add() {
         System.out.println("Nhập mã nhân viên");
-        int id = Integer.parseInt(sc.nextLine());
+        String id = (sc.nextLine());
         System.out.println("Nhập hộ và tên");
         String name = sc.nextLine();
         System.out.println("Nhập ngày tháng năm sinh");
@@ -36,46 +39,41 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("Nhập vị trí");
         String position = sc.nextLine();
         System.out.println("Nhập lương");
-        int salary = Integer.parseInt(sc.nextLine());
+        String salary = (sc.nextLine());
         employee = new Employee(id, name, birth, gender, cmnd, sdt, email, level, position, salary);
         employeeServiceList.add(employee);
+            writeFile(employee);
     }
 
     @Override
     public void edit() {
         System.out.println("Nhập id nhân viên");
-        int id = Integer.parseInt(sc.nextLine());
+        String id = (sc.nextLine());
         System.out.println("Nhập tên nhân viên cần sửa");
         String name = sc.nextLine();
-        boolean flag=true;
+        boolean flag = true;
         for (Employee employee : employeeServiceList) {
             if (employee.getMa() == id && employee.getHoTen().equals(name)) {
-               optionEdit(employee);
-               flag=false;
+                optionEdit(employee);
+                flag = false;
             }
-        }if (flag){
+        }
+        if (flag) {
             System.out.println("Nhân viên không tồn tại");
         }
     }
 
-    @Override
-    public void remove() {
-        System.out.println("Nhập mã nhân viên cần xóa");
-        int id=Integer.parseInt(sc.nextLine());
-        System.out.println("Nhập tên nhân viên cần xóa");
-        String name=sc.nextLine();
-        employeeServiceList.removeIf(employee -> employee.getMa() == id && employee.getHoTen().equals(name));
-    }
 
     @Override
     public void display() {
-        for (Employee employee:employeeServiceList) {
+        for (Employee employee : employeeServiceList) {
             System.out.println(employee);
         }
     }
-    private void optionEdit(Employee e){
-        int choice=0;
-        while (choice !=11){
+
+    private void optionEdit(Employee e) {
+        int choice = 0;
+        while (choice != 11) {
             System.out.println("1.Sửa mã nhân viên");
             System.out.println("2.Sửa tên nhân viên");
             System.out.println("3.Sửa ngày tháng năm nhân viên");
@@ -87,59 +85,83 @@ public class EmployeeServiceImpl implements EmployeeService {
             System.out.println("9.Sửa vị trí nhân viên");
             System.out.println("10.Sửa lương nhân viên");
             System.out.println("11.thoát");
-            choice=Integer.parseInt(sc.nextLine());
+            choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
                     System.out.println("Nhập mã ");
-                    int id=sc.nextInt();
+                    String id = sc.nextLine();
                     e.setMa(id);
+                    writeFile(employee);
                     break;
                 case 2:
                     System.out.println("Nhập họ tên");
-                    String name=sc.nextLine();
+                    String name = sc.nextLine();
                     e.setHoTen(name);
+                    writeFile(employee);
                     break;
                 case 3:
                     System.out.println("Nhập ngày tháng năm sinh");
-                    String birth=sc.nextLine();
+                    String birth = sc.nextLine();
                     e.setNgaySinh(birth);
+                    writeFile(employee);
                     break;
                 case 4:
                     System.out.println("Nhập giới tính");
-                    String gender=sc.nextLine();
+                    String gender = sc.nextLine();
                     e.setGioiTinh(gender);
+                    writeFile(employee);
                     break;
                 case 5:
                     System.out.println("Nhập cmnd");
-                    String cmnd=sc.nextLine();
+                    String cmnd = sc.nextLine();
                     e.setCmnd(cmnd);
+                    writeFile(employee);
                     break;
                 case 6:
                     System.out.println("Nhập sđt");
-                    String sdt=sc.nextLine();
+                    String sdt = sc.nextLine();
                     e.setSdt(sdt);
+                    writeFile(employee);
                     break;
                 case 7:
                     System.out.println("Nhập email");
-                    String email=sc.nextLine();
+                    String email = sc.nextLine();
                     e.setEmail(email);
+                    writeFile(employee);
                     break;
                 case 8:
                     System.out.println("Nhập trình độ");
-                    String level=sc.nextLine();
+                    String level = sc.nextLine();
                     e.setTrinhDo(level);
+                    writeFile(employee);
                     break;
                 case 9:
                     System.out.println("Nhập vị trí");
-                    String position=sc.nextLine();
+                    String position = sc.nextLine();
                     e.setViTri(position);
+                    writeFile(employee);
                     break;
                 case 10:
                     System.out.println("Nhập lương");
-                    int salary=sc.nextInt();
+                    String salary = sc.nextLine();
                     e.setLuong(salary);
+                    writeFile(employee);
                     break;
             }
         }
     }
-}
+    private static void writeFile(Employee e){
+//        String line;
+//        final String COMMA=",";
+        final String PATH_FILE = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\employee.csv";
+        List<String> stringList =new ArrayList<>();
+        stringList.add(e.toString());
+//        for (Employee employee:employeeServiceList) {
+//            line=employee.getMa() + COMMA + employee.getHoTen() + COMMA + employee.getNgaySinh() + COMMA +
+//                    employee.getGioiTinh() + COMMA + employee.getCmnd() + COMMA + employee.getSdt() + COMMA +
+//                    employee.getEmail() + COMMA + employee.getTrinhDo() + COMMA + employee.getViTri() + COMMA +
+//                    employee.getLuong();
+            FileUtils.writeFile(stringList,PATH_FILE);
+        }
+    }
+

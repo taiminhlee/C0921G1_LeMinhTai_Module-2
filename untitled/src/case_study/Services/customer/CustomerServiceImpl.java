@@ -1,5 +1,6 @@
 package case_study.Services.customer;
 
+import case_study.Services.FileUtils;
 import case_study.Services.customer.CustomerService;
 import case_study.models.person.Customer;
 
@@ -10,16 +11,19 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements CustomerService {
     static List<Customer> customerList = new LinkedList<>();
     Scanner sc = new Scanner(System.in);
-    Customer customer;
+   static Customer customer;
+
 
     static {
-        customerList.add(new Customer(28, "Lê Thị Hoa", "6/7/1998", "nữ", "946483475935", "098483642", "HoaThii@gmail.com", "Platinium", "12A"));
+        customer=new Customer("A28", "Lê Thị Hoa", "6/7/1998", "nữ", "946483475935", "098483642", "HoaThii@gmail.com", "Platinium", "HCM");
+        customerList.add(customer);
+//          writeFile();
     }
 
     @Override
     public void add() {
         System.out.println("Nhập mã nhân viên");
-        int id = Integer.parseInt(sc.nextLine());
+        String id = (sc.nextLine());
         System.out.println("Nhập hộ và tên");
         String name = sc.nextLine();
         System.out.println("Nhập ngày tháng năm sinh");
@@ -36,19 +40,19 @@ public class CustomerServiceImpl implements CustomerService {
         String type = sc.nextLine();
         System.out.println("Nhập địa chỉ");
         String address = sc.nextLine();
-        customer = new Customer(id, name, birth, gender, cmnd, sdt, email, type, address);
-        customerList.add(customer);
+        customerList.add(new Customer(id, name, birth, gender, cmnd, sdt, email, type, address));
+//        writeFile();
     }
 
     @Override
     public void edit() {
         System.out.println("Nhập id nhân viên");
-        int id = Integer.parseInt(sc.nextLine());
+        String id = (sc.nextLine());
         System.out.println("Nhập tên nhân viên cần sửa");
         String name = sc.nextLine();
         boolean flag = true;
         for (Customer customer : customerList) {
-            if (customer.getMa() == id && customer.getHoTen().equals(name)) {
+            if (customer.getMa().equals(id) && customer.getHoTen().equals(name)) {
                 optionEdit(customer);
                 flag = false;
             }
@@ -58,14 +62,6 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
-    @Override
-    public void remove() {
-        System.out.println("Nhập mã nhân viên cần xóa");
-        int id=Integer.parseInt(sc.nextLine());
-        System.out.println("Nhập tên nhân viên cần xóa");
-        String name=sc.nextLine();
-        customerList.removeIf(customer -> customer.getMa() == id && customer.getHoTen().equals(name));
-    }
 
     @Override
     public void display() {
@@ -91,50 +87,70 @@ public class CustomerServiceImpl implements CustomerService {
             switch (choice) {
                 case 1:
                     System.out.println("Nhập mã ");
-                    int id = sc.nextInt();
+                    String id = sc.nextLine();
                     e.setMa(id);
+//                    writeFile();
                     break;
                 case 2:
                     System.out.println("Nhập họ tên");
                     String name = sc.nextLine();
                     e.setHoTen(name);
+//                    writeFile();
                     break;
                 case 3:
                     System.out.println("Nhập ngày tháng năm sinh");
                     String birth = sc.nextLine();
                     e.setNgaySinh(birth);
+//                    writeFile();
                     break;
                 case 4:
                     System.out.println("Nhập giới tính");
                     String gender = sc.nextLine();
                     e.setGioiTinh(gender);
+//                    writeFile();
                     break;
                 case 5:
                     System.out.println("Nhập cmnd");
                     String cmnd = sc.nextLine();
                     e.setCmnd(cmnd);
+//                    writeFile();
                     break;
                 case 6:
                     System.out.println("Nhập sđt");
                     String sdt = sc.nextLine();
                     e.setSdt(sdt);
+//                    writeFile();
                     break;
                 case 7:
                     System.out.println("Nhập email");
                     String email = sc.nextLine();
                     e.setEmail(email);
+//                    writeFile();
                     break;
                 case 8:
-                    System.out.println("Nhập trình độ");
+                    System.out.println("Nhập loại khách");
                     String type = sc.nextLine();
                     e.setLoaiKhach(type);
+//                    writeFile();
                     break;
                 case 9:
-                    System.out.println("Nhập vị trí");
+                    System.out.println("Nhập địa chỉ");
                     String address = sc.nextLine();
                     e.setDiaChi(address);
+//                    writeFile();
                     break;
             }
         }
     }
+//    private static void writeFile(){
+//        String line;
+//        final String PATH_FILE="G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\customer.csv";
+//        final String COMMA =",";
+//        for (Customer customer: customerList) {
+//            line=customer.getMa() + COMMA + customer.getHoTen() + COMMA + customer.getNgaySinh() + COMMA +
+//                    customer.getGioiTinh() + COMMA + customer.getCmnd() + COMMA + customer.getSdt() + COMMA +
+//                    customer.getEmail() + COMMA + customer.getLoaiKhach() + COMMA + customer.getDiaChi();
+//            FileUtils.writeFile(line,PATH_FILE);
+//        }
+//    }
 }

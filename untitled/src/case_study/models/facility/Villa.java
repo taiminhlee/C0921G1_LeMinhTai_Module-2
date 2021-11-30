@@ -12,8 +12,8 @@ public class Villa extends Facility {
     public Villa() {
     }
 
-    public Villa(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, double dienTichHoBoi, String soTang) {
-        super(tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
+    public Villa(String maDichVu, String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa, String tieuChuanPhong, double dienTichHoBoi, String soTang) {
+        super(maDichVu, tenDichVu, kieuThue, dienTichSuDung, chiPhiThue, soNguoiToiDa);
         this.tieuChuanPhong = tieuChuanPhong;
         this.dienTichHoBoi = dienTichHoBoi;
         this.soTang = soTang;
@@ -45,12 +45,7 @@ public class Villa extends Facility {
 
     @Override
     public String toString() {
-        return "Villa{" +
-                super.toString() +
-                ", tieuChuanPhong='" + tieuChuanPhong + '\'' +
-                ", dienTichHoBoi=" + dienTichHoBoi +
-                ", soTang=" + soTang +
-                '}';
+        return super.toString() + "," + this.tieuChuanPhong + "," + this.dienTichHoBoi + "," + this.soTang;
     }
 
     @Override
@@ -59,14 +54,10 @@ public class Villa extends Facility {
         if (!(o instanceof Villa)) return false;
         if (!super.equals(o)) return false;
         Villa villa = (Villa) o;
-        return Double.compare(villa.getDienTichSuDung(), getDienTichSuDung()) == 0 &&
-                Objects.equals(villa.getChiPhiThue(), getChiPhiThue()) &&
-                getSoNguoiToiDa() == villa.getSoNguoiToiDa() &&
-                Objects.equals(getTenDichVu(), villa.getTenDichVu()) &&
-                Objects.equals(getKieuThue(), villa.getKieuThue()) &&
+        return super.equals(o) &&
                 Double.compare(villa.dienTichHoBoi, dienTichHoBoi) == 0 &&
-                soTang.equals(villa.soTang) &&
-                Objects.equals(tieuChuanPhong, villa.tieuChuanPhong);
+                Objects.equals(tieuChuanPhong, villa.tieuChuanPhong) &&
+                Objects.equals(soTang, villa.soTang);
     }
 
     @Override

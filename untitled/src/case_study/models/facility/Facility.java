@@ -3,15 +3,16 @@ package case_study.models.facility;
 import java.util.Objects;
 
 public abstract class Facility {
-    private String tenDichVu, kieuThue, chiPhiThue;
+    private String tenDichVu, kieuThue, chiPhiThue,maDichVu;
     private double dienTichSuDung;
     private int soNguoiToiDa;
 
     public Facility() {
     }
 
-    public Facility(String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa) {
+    public Facility(String maDichVu,String tenDichVu, String kieuThue, double dienTichSuDung, String chiPhiThue, int soNguoiToiDa) {
         this.tenDichVu = tenDichVu;
+        this.maDichVu=maDichVu;
         this.kieuThue = kieuThue;
         this.dienTichSuDung = dienTichSuDung;
         this.chiPhiThue = chiPhiThue;
@@ -58,14 +59,18 @@ public abstract class Facility {
         this.soNguoiToiDa = soNguoiToiDa;
     }
 
+    public String getMaDichVu() {
+        return maDichVu;
+    }
+
+    public void setMaDichVu(String maDichVu) {
+        this.maDichVu = maDichVu;
+    }
+
     @Override
     public String toString() {
-        return
-                "tenDichVu='" + tenDichVu + '\'' +
-                        ", kieuThue='" + kieuThue + '\'' +
-                        ", dienTichSuDung=" + dienTichSuDung +
-                        ", chiPhiThue=" + chiPhiThue +
-                        ", soNguoiToiDa=" + soNguoiToiDa;
+        return   this.tenDichVu + "," + this.kieuThue + "," + this.chiPhiThue + "," + this.maDichVu + "," + this.dienTichSuDung + "," + this.soNguoiToiDa;
+
     }
 
     @Override
@@ -77,6 +82,7 @@ public abstract class Facility {
                 Objects.equals(facility.chiPhiThue, chiPhiThue) &&
                 soNguoiToiDa == facility.soNguoiToiDa &&
                 Objects.equals(tenDichVu, facility.tenDichVu) &&
+                Objects.equals(maDichVu, facility.maDichVu) &&
                 Objects.equals(kieuThue, facility.kieuThue);
     }
 

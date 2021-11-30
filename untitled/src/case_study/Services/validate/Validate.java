@@ -57,4 +57,11 @@ public class Validate {
         }
         return quantity;
     }
+    public static void validaIdService(String str){
+        String nameRegex="^(SV)(VL|HO|RO)\\-\\d{4}$";
+        while (!Pattern.matches(nameRegex, str)) {
+            System.err.println("Nhập lại");
+            str = sc.nextLine();
+        }
+    }
 }
