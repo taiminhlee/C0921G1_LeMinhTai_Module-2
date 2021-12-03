@@ -1,7 +1,9 @@
 package case_study.Services.facility;
 
 import case_study.Services.FileUtils;
-import case_study.Services.validate.Validate;
+import case_study.Services.booking.BookingServiceImpl;
+import case_study.Services.Validate;
+import case_study.models.Booking;
 import case_study.models.facility.Facility;
 import case_study.models.facility.House;
 import case_study.models.facility.Room;
@@ -11,17 +13,14 @@ import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
     Scanner sc = new Scanner(System.in);
-    static Map<Facility, Integer> map = new LinkedHashMap<>();
-    Facility facility;
+    static Map<Facility, Integer> fa = new LinkedHashMap<>();
+    static Facility facility;
+    static final String PATH_FILE_HO = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\house.csv";
+    static final String PATH_FILE_RO = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\room.csv";
+    static final String PATH_FILE_VL = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\villa.csv";
 
-    static {
-        Facility facility1 = new Villa("SVVL-0383", "villa1", "thuê theo ngày", 23, "2.000.000", 4, "3 sao", 6, "2");
-        map.put(facility1, 1);
-        Facility facility2 = new House("SVHO-3538", "house1", "thuê theo tháng", 18, "1.000.000", 3, "2 sao", "1");
-        map.put(facility2, 1);
-        Facility facility3 = new Room("SVRO-5836", "room1", "thuê theo giờ", 8, "750.000", 2, "abc");
-        map.put(facility3, 1);
-        writeFile();
+    {
+        fa = readFile();
     }
 
     @Override
@@ -51,26 +50,17 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void display() {
-        for (Facility facility : map.keySet()) {
-            System.out.println(facility + ", đã sử dụng " + map.get(facility));
+        for (Facility facility : fa.keySet()) {
+            System.out.println(facility);
         }
+
     }
 
-    private void check(Facility e) {
-        Integer tempt;
-        if (map.containsKey(e)) {
-            tempt = map.get(e);
-            map.remove(e);
-            map.put(e, tempt + 1);
-        } else {
-            map.put(e, 1);
-        }
-    }
 
     private void input(int i) {
         System.out.println("Nhập mã dịch vụ");
         String idService = sc.nextLine();
-        Validate.validaIdService(idService);
+        Validate.validateIdService(idService);
         System.out.println("Nhập tên dịch vụ");
         String serviceName = sc.nextLine();
         Validate.validateName(serviceName);
@@ -88,8 +78,7 @@ public class FacilityServiceImpl implements FacilityService {
             System.out.println("Nhập dịch vụ miễn phí đi kèm");
             String freeService = sc.nextLine();
             facility = new Room(idService, serviceName, rentalType, area, price, members, freeService);
-            check(facility);
-            writeFile();
+            FileUtils.writeFile(covertFacilityToString((facility)), PATH_FILE_RO);
         } else {
             System.out.println("Nhập tiêu chuẩn phòng");
             String standard = sc.nextLine();
@@ -101,45 +90,73 @@ public class FacilityServiceImpl implements FacilityService {
                 System.out.println("Diện tích hồ bơi");
                 double pool = Validate.validateArea();
                 facility = new Villa(idService, serviceName, rentalType, area, price, members, standard, pool, floor);
-                check(facility);
-                writeFile();
+                FileUtils.writeFile(covertFacilityToString((facility)), PATH_FILE_VL);
             } else if (i == 2) {
                 facility = new House(idService, serviceName, rentalType, area, price, members, standard, floor);
-                check(facility);
-                writeFile();
+                FileUtils.writeFile(covertFacilityToString((facility)), PATH_FILE_HO);
             }
         }
     }
 
     public void displayMaintenance() {
-        for (Facility facility : map.keySet()) {
-            if (map.get(facility) == 5) {
-                System.out.println(facility);
+        BookingServiceImpl bookingService = new BookingServiceImpl();
+        Set<Booking> bookings = bookingService.getBookingMonth();
+        Map<Facility, Integer> facility = new HashMap<>();
+        Integer tempt;
+        for (Booking booking : bookings) {
+            for (Facility e : fa.keySet()) {
+                if (booking.getMaDichVu().equals(e.getMaDichVu())) {
+                    if (fa.containsKey(e)) {
+                        tempt=fa.get(e);
+                        facility.put(e, tempt + 1);
+                    } else {
+                        facility.put(e, 1);
+                    }
+                }
             }
+        }
+        for (Facility e : facility.keySet()) {
+            System.out.println(e + ",số lần sử dụng: " + facility.get(e));
         }
     }
 
-    private static void writeFile() {
-        final String PATH_FILE_HO = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\house.csv";
-        final String PATH_FILE_RO = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\room.csv";
-        final String PATH_FILE_VL = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\villa.csv";
-        List<String> stringList = new ArrayList<>();
-        for (Facility facility:map.keySet()) {
-            if (facility instanceof Villa){
-                stringList.add(facility.toString());
-                FileUtils.writeFile(stringList, PATH_FILE_VL);
-                break;
-            }else if (facility instanceof House){
-                stringList.add(facility.toString());
-                FileUtils.writeFile(stringList, PATH_FILE_HO);
-                break;
-            }else if (facility instanceof Room){
-                stringList.add(facility.toString());
-                FileUtils.writeFile(stringList, PATH_FILE_RO);
-                break;
+    private static List<String> covertFacilityToString(Facility e) {
+        List<String> villaList = new ArrayList<>();
+        List<String> houseList = new ArrayList<>();
+        List<String> roomList = new ArrayList<>();
+        for (Facility key : fa.keySet()) {
+            if (key instanceof Villa) {
+                villaList.add(key.toString() + "," + fa.get(key));
+            } else if (key instanceof House) {
+                houseList.add(key.toString() + "," + fa.get(key));
+            } else {
+                roomList.add(key.toString() + "," + fa.get(key));
             }
         }
+        if (e instanceof Villa) {
+            return villaList;
+        } else if (e instanceof House) {
+            return houseList;
+        } else return roomList;
+    }
 
+    private Map<Facility, Integer> readFile() {
+        List<String> villaList = FileUtils.readFile(PATH_FILE_VL);
+        List<String> houseList = FileUtils.readFile(PATH_FILE_HO);
+        List<String> roomList = FileUtils.readFile(PATH_FILE_RO);
+        for (String str : villaList) {
+            String[] arr = str.split(",");
+            fa.put(new Villa(arr[0], arr[1], arr[2], Double.parseDouble(arr[3]), arr[4], Integer.parseInt(arr[5]), arr[6], Double.parseDouble(arr[7]), arr[8]), Integer.parseInt(arr[9]));
+        }
+        for (String str : houseList) {
+            String[] arr = str.split(",");
+            fa.put(new House(arr[0], arr[1], arr[2], Double.parseDouble(arr[3]), arr[4], Integer.parseInt(arr[5]), arr[6], arr[7]), Integer.parseInt(arr[8]));
+        }
+        for (String str : roomList) {
+            String[] arr = str.split(",");
+            fa.put(new Room(arr[0], arr[1], arr[2], Double.parseDouble(arr[3]), arr[4], Integer.parseInt(arr[5]), arr[6]), Integer.parseInt(arr[7]));
+        }
+        return fa;
     }
 }
 

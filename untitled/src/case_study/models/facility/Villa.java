@@ -45,7 +45,7 @@ public class Villa extends Facility {
 
     @Override
     public String toString() {
-        return super.toString() + "," + this.tieuChuanPhong + "," + this.dienTichHoBoi + "," + this.soTang;
+        return this.getMaDichVu() +  "," + this.getTenDichVu() + "," + this.getKieuThue() + "," + this.getDienTichSuDung() + "," + this.getChiPhiThue() + "," + this.getSoNguoiToiDa() + "," + this.tieuChuanPhong + "," + this.dienTichHoBoi + "," + this.soTang;
     }
 
     @Override

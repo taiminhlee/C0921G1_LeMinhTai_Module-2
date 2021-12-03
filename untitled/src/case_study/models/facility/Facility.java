@@ -69,7 +69,7 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return   this.tenDichVu + "," + this.kieuThue + "," + this.chiPhiThue + "," + this.maDichVu + "," + this.dienTichSuDung + "," + this.soNguoiToiDa;
+        return  this.maDichVu + "," + this.tenDichVu + "," + this.kieuThue + "," + this.chiPhiThue + "," + this.soNguoiToiDa + "," + this.dienTichSuDung + "," + this.soNguoiToiDa;
 
     }
 

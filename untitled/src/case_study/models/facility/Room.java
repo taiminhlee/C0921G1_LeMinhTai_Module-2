@@ -25,7 +25,7 @@ public class Room extends Facility {
 
     @Override
     public String toString() {
-        return super.toString() + "," + this.dichVuMienPhiDiKem;
+        return this.getMaDichVu() +  "," + this.getTenDichVu() + "," + this.getKieuThue() + "," + this.getDienTichSuDung() + "," + this.getChiPhiThue() + "," + this.getSoNguoiToiDa() + "," + this.dichVuMienPhiDiKem;
     }
 
     @Override

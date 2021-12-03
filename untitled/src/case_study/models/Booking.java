@@ -3,17 +3,17 @@ package case_study.models;
 import java.util.Objects;
 
 public class Booking {
-    String maBooking,ngayBatDau,ngayKetThuc,maKhachHang,tenDichVu,loaiDichVu;
+    String maBooking,ngayBatDau,ngayKetThuc,maKhachHang,maDichVu,loaiDichVu;
 
     public Booking() {
     }
 
-    public Booking(String maBooking, String ngayBatDau, String ngayKetThuc, String maKhachHang, String tenDichVu, String loaiDichVu) {
+    public Booking(String maBooking, String ngayBatDau, String ngayKetThuc, String maKhachHang, String maDichVu, String loaiDichVu) {
         this.maBooking = maBooking;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
         this.maKhachHang = maKhachHang;
-        this.tenDichVu = tenDichVu;
+        this.maDichVu = maDichVu;
         this.loaiDichVu = loaiDichVu;
     }
 
@@ -49,12 +49,12 @@ public class Booking {
         this.maKhachHang = maKhachHang;
     }
 
-    public String getTenDichVu() {
-        return tenDichVu;
+    public String getMaDichVu() {
+        return maDichVu;
     }
 
-    public void setTenDichVu(String tenDichVu) {
-        this.tenDichVu = tenDichVu;
+    public void setMaDichVu(String tenDichVu) {
+        this.maDichVu = maDichVu;
     }
 
     public String getLoaiDichVu() {
@@ -67,7 +67,7 @@ public class Booking {
 
     @Override
     public String toString() {
-        return this.maBooking + "," + this.ngayBatDau + "," + this.ngayKetThuc + "," + this.maKhachHang + "," + this.tenDichVu + "," + this.loaiDichVu;
+        return this.maBooking + "," + this.ngayBatDau + "," + this.ngayKetThuc + "," + this.maKhachHang + "," + this.maDichVu + "," + this.loaiDichVu;
     }
 
     @Override
@@ -75,16 +75,11 @@ public class Booking {
         if (this == o) return true;
         if (!(o instanceof Booking)) return false;
         Booking booking = (Booking) o;
-        return Objects.equals(maBooking, booking.maBooking) &&
-                Objects.equals(ngayBatDau, booking.ngayBatDau) &&
-                Objects.equals(ngayKetThuc, booking.ngayKetThuc) &&
-                Objects.equals(maKhachHang, booking.maKhachHang) &&
-                Objects.equals(tenDichVu, booking.tenDichVu) &&
-                Objects.equals(loaiDichVu, booking.loaiDichVu);
+        return Objects.equals(maBooking, booking.maBooking);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maBooking, ngayBatDau, ngayKetThuc, maKhachHang, tenDichVu, loaiDichVu);
+        return Objects.hash(maBooking);
     }
 }

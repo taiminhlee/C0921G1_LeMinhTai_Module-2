@@ -40,6 +40,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + "," + this.trinhDo + "," + this.viTri + "," + this.luong;
+        return this.getMa() + "," + this.getHoTen() + "," + this.getNgaySinh() + "," + this.getGioiTinh() + "," + this.getCmnd() + "," + this.getSdt() + "," + this.getEmail() + "," + this.trinhDo + "," + this.viTri + "," + this.luong;
     }
 }

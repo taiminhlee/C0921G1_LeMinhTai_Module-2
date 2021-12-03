@@ -57,12 +57,6 @@ public class Contracts {
 
     @Override
     public String toString() {
-        return "Contracts{" +
-                "soHopDong=" + soHopDong +
-                ", maBooking='" + maBooking + '\'' +
-                ", soTienCoc='" + soTienCoc + '\'' +
-                ", tongSoTien='" + tongSoTien + '\'' +
-                ", maKhanhHang='" + maKhanhHang + '\'' +
-                '}';
+        return  soHopDong + "," + maBooking + "," + soTienCoc + "," + tongSoTien + "," + maKhanhHang ;
     }
 }

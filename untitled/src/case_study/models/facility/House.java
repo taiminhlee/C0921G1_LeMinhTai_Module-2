@@ -35,7 +35,7 @@ public class House extends Facility {
 
     @Override
     public String toString() {
-        return super.toString() + "," + this.soTang + "," + this.tieuChuanPhong;
+        return this.getMaDichVu() +  "," + this.getTenDichVu() + "," + this.getKieuThue() + "," + this.getDienTichSuDung() + "," + this.getChiPhiThue() + "," + this.getSoNguoiToiDa() + "," + this.soTang + "," + this.tieuChuanPhong;
     }
 
     @Override

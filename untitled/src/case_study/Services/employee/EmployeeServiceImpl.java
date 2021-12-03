@@ -1,6 +1,9 @@
 package case_study.Services.employee;
 
 import case_study.Services.FileUtils;
+import case_study.models.facility.Facility;
+import case_study.models.facility.House;
+import case_study.models.facility.Villa;
 import case_study.models.person.Employee;
 
 import java.util.ArrayList;
@@ -11,11 +14,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     static List<Employee> employeeServiceList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
     Employee employee;
+    final String PATH_FILE = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\employee.csv";
 
-    static {
-        Employee employee = new Employee("1", "Nguyễn Văn A", "4/7/1999", "nam", "836434273", "294723828", "nguyenvana@gmail.com", "Đại học", "chuyên viên", "20000");
-        employeeServiceList.add(employee);
-         writeFile(employee);
+    {
+        employeeServiceList = readFile();
     }
 
     @Override
@@ -42,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String salary = (sc.nextLine());
         employee = new Employee(id, name, birth, gender, cmnd, sdt, email, level, position, salary);
         employeeServiceList.add(employee);
-            writeFile(employee);
+        FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         String name = sc.nextLine();
         boolean flag = true;
         for (Employee employee : employeeServiceList) {
-            if (employee.getMa() == id && employee.getHoTen().equals(name)) {
+            if (employee.getMa().equals(id) && employee.getHoTen().equals(name)) {
                 optionEdit(employee);
                 flag = false;
             }
@@ -91,77 +93,81 @@ public class EmployeeServiceImpl implements EmployeeService {
                     System.out.println("Nhập mã ");
                     String id = sc.nextLine();
                     e.setMa(id);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 2:
                     System.out.println("Nhập họ tên");
                     String name = sc.nextLine();
                     e.setHoTen(name);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 3:
                     System.out.println("Nhập ngày tháng năm sinh");
                     String birth = sc.nextLine();
                     e.setNgaySinh(birth);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 4:
                     System.out.println("Nhập giới tính");
                     String gender = sc.nextLine();
                     e.setGioiTinh(gender);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 5:
                     System.out.println("Nhập cmnd");
                     String cmnd = sc.nextLine();
                     e.setCmnd(cmnd);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 6:
                     System.out.println("Nhập sđt");
                     String sdt = sc.nextLine();
                     e.setSdt(sdt);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 7:
                     System.out.println("Nhập email");
                     String email = sc.nextLine();
                     e.setEmail(email);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 8:
                     System.out.println("Nhập trình độ");
                     String level = sc.nextLine();
                     e.setTrinhDo(level);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 9:
                     System.out.println("Nhập vị trí");
                     String position = sc.nextLine();
                     e.setViTri(position);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
                 case 10:
                     System.out.println("Nhập lương");
                     String salary = sc.nextLine();
                     e.setLuong(salary);
-                    writeFile(employee);
+                    FileUtils.writeFile(covertEmployeeToString(), PATH_FILE);
                     break;
             }
         }
     }
-    private static void writeFile(Employee e){
-//        String line;
-//        final String COMMA=",";
-        final String PATH_FILE = "G:\\codegym\\C0921G1-LeMinhTai-module-2\\untitled\\src\\case_study\\data\\employee.csv";
-        List<String> stringList =new ArrayList<>();
-        stringList.add(e.toString());
-//        for (Employee employee:employeeServiceList) {
-//            line=employee.getMa() + COMMA + employee.getHoTen() + COMMA + employee.getNgaySinh() + COMMA +
-//                    employee.getGioiTinh() + COMMA + employee.getCmnd() + COMMA + employee.getSdt() + COMMA +
-//                    employee.getEmail() + COMMA + employee.getTrinhDo() + COMMA + employee.getViTri() + COMMA +
-//                    employee.getLuong();
-            FileUtils.writeFile(stringList,PATH_FILE);
+
+    private static List<String> covertEmployeeToString() {
+        List<String> employList = new ArrayList<>();
+        for (Employee employee : employeeServiceList) {
+            employList.add(employee.toString());
         }
+        return employList;
     }
+
+    private List<Employee> readFile() {
+        List<String> stringList = FileUtils.readFile(PATH_FILE);
+        for (String str : stringList) {
+            String[] arr = str.split(",");
+            employeeServiceList.add(new Employee(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9]));
+        }
+        return employeeServiceList;
+    }
+}
 
